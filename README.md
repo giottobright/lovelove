@@ -10,7 +10,19 @@ This is an [Onlook](https://onlook.com/) project set up with
 
 ## Getting Started
 
-First, run the development server:
+Install the project dependencies before running any scripts:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then start the development server:
 
 ```bash
 npm run dev
@@ -23,3 +35,11 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in Onlook to see the result.
+
+## Linting
+
+Run ESLint to check the codebase:
+
+```bash
+npm run lint
+```
