@@ -6,6 +6,9 @@ export default function Page() {
     const [currentOnboardingStep, setCurrentOnboardingStep] = useState(0);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [activeTab, setActiveTab] = useState('onboarding');
+    const [activeSubTab, setActiveSubTab] = useState('calendar'); // For Plans tab
+    const [activeTogetherTab, setActiveTogetherTab] = useState('photos'); // For Together tab
+    const [activeSocialTab, setActiveSocialTab] = useState('connect'); // For Social tab
     const [calendarView, setCalendarView] = useState('month');
     const [showFriendsEvents, setShowFriendsEvents] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -1089,6 +1092,862 @@ export default function Page() {
                         </div>
                     ))}
                 </div>
+            </div>
+        </div>
+    );
+
+    const renderPlans = () => (
+        <div
+            className={`min-h-screen pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+            data-oid="-y3rnr8"
+        >
+            {/* Sub Navigation */}
+            <div
+                className={`sticky top-0 z-40 ${isDarkMode ? 'bg-gray-900/95' : 'bg-gray-50/95'} backdrop-blur-lg border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
+                data-oid="y.4wx1k"
+            >
+                <div className="flex justify-around py-4 px-6" data-oid="dz9ab_x">
+                    {[
+                        { id: 'calendar', icon: '📅', label: 'Календарь' },
+                        { id: 'travels', icon: '✈️', label: 'Поездки' },
+                    ].map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveSubTab(tab.id)}
+                            className={`flex flex-col items-center py-2 px-4 rounded-2xl transition-all duration-300 ${
+                                activeSubTab === tab.id
+                                    ? 'bg-purple-500 text-white shadow-lg scale-105'
+                                    : isDarkMode
+                                      ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                                      : 'text-gray-500 hover:text-gray-700 hover:bg-white'
+                            }`}
+                            data-oid="fnl.pgg"
+                        >
+                            <span className="text-xl mb-1" data-oid="cvr2is:">
+                                {tab.icon}
+                            </span>
+                            <span className="text-sm font-medium" data-oid=":_ucjrf">
+                                {tab.label}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6" data-oid="w2m8:ax">
+                {activeSubTab === 'calendar' && (
+                    <div data-oid="mf-7ax6">
+                        <div className="flex justify-between items-center mb-6" data-oid="q2lpodx">
+                            <h1
+                                className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                data-oid="xdp7x9-"
+                            >
+                                Календарь
+                            </h1>
+                            <button
+                                className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center text-white shadow-lg"
+                                data-oid="ekfiqu8"
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <div className="flex space-x-4 mb-6" data-oid="1nk-ao:">
+                            <button
+                                onClick={() => setCalendarView('month')}
+                                className={`px-4 py-2 rounded-2xl transition-all ${
+                                    calendarView === 'month'
+                                        ? 'bg-purple-500 text-white'
+                                        : isDarkMode
+                                          ? 'bg-gray-700 text-gray-300'
+                                          : 'bg-white text-gray-600'
+                                }`}
+                                data-oid="s5o.my2"
+                            >
+                                Месяц
+                            </button>
+                            <button
+                                onClick={() => setCalendarView('agenda')}
+                                className={`px-4 py-2 rounded-2xl transition-all ${
+                                    calendarView === 'agenda'
+                                        ? 'bg-purple-500 text-white'
+                                        : isDarkMode
+                                          ? 'bg-gray-700 text-gray-300'
+                                          : 'bg-white text-gray-600'
+                                }`}
+                                data-oid="xxu.ng6"
+                            >
+                                Список
+                            </button>
+                        </div>
+
+                        <div className="flex items-center justify-between mb-6" data-oid="97or6qn">
+                            <span
+                                className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
+                                data-oid="wze1j35"
+                            >
+                                События друзей
+                            </span>
+                            <button
+                                onClick={() => setShowFriendsEvents(!showFriendsEvents)}
+                                className={`w-12 h-6 rounded-full transition-all ${
+                                    showFriendsEvents
+                                        ? 'bg-purple-500'
+                                        : isDarkMode
+                                          ? 'bg-gray-600'
+                                          : 'bg-gray-300'
+                                }`}
+                                data-oid="ewpmwse"
+                            >
+                                <div
+                                    className={`w-5 h-5 bg-white rounded-full transition-all ${
+                                        showFriendsEvents ? 'translate-x-6' : 'translate-x-0.5'
+                                    }`}
+                                    data-oid="7xsjixq"
+                                />
+                            </button>
+                        </div>
+
+                        <div
+                            className={`p-6 rounded-3xl shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                            data-oid="v9m-oly"
+                        >
+                            <div className="grid grid-cols-7 gap-2 mb-4" data-oid="ohpl9l1">
+                                {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((day) => (
+                                    <div
+                                        key={day}
+                                        className={`text-center text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                        data-oid="kq8n6_a"
+                                    >
+                                        {day}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="grid grid-cols-7 gap-2" data-oid=".t33q6f">
+                                {Array.from({ length: 35 }, (_, i) => (
+                                    <div
+                                        key={i}
+                                        className={`h-8 flex items-center justify-center text-sm rounded-xl ${
+                                            i === 15
+                                                ? 'bg-purple-500 text-white'
+                                                : isDarkMode
+                                                  ? 'text-gray-300 hover:bg-gray-700'
+                                                  : 'text-gray-700 hover:bg-gray-100'
+                                        }`}
+                                        data-oid="7es2wxf"
+                                    >
+                                        {i + 1 <= 31 ? i + 1 : ''}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {activeSubTab === 'travels' && (
+                    <div data-oid="nh87ztj">
+                        <div className="flex justify-between items-center mb-6" data-oid="j1kvhl9">
+                            <h1
+                                className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                data-oid="3hj-f_7"
+                            >
+                                Путешествия
+                            </h1>
+                            <button
+                                className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center text-white shadow-lg"
+                                data-oid="fsjl7:t"
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        {/* Interactive Map Placeholder */}
+                        <div
+                            className={`h-48 rounded-3xl mb-6 shadow-lg overflow-hidden ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                            data-oid="pldeqwf"
+                        >
+                            <div
+                                className="w-full h-full bg-gradient-to-br from-blue-400 via-green-400 to-blue-500 flex items-center justify-center relative"
+                                data-oid="922rj6_"
+                            >
+                                <div className="text-white text-center" data-oid="8pron3z">
+                                    <div className="text-4xl mb-2" data-oid="it91lo3">
+                                        🗺️
+                                    </div>
+                                    <p className="font-medium" data-oid="ii4nax1">
+                                        Интерактивная карта
+                                    </p>
+                                    <p className="text-sm opacity-80" data-oid="cfsf13q">
+                                        Ваши путешествия
+                                    </p>
+                                </div>
+                                <div
+                                    className="absolute top-4 left-8 w-3 h-3 bg-red-500 rounded-full animate-pulse"
+                                    data-oid="etpsqa."
+                                ></div>
+                                <div
+                                    className="absolute bottom-8 right-12 w-3 h-3 bg-yellow-500 rounded-full animate-pulse"
+                                    data-oid="pcfn0rr"
+                                ></div>
+                                <div
+                                    className="absolute top-12 right-6 w-3 h-3 bg-green-500 rounded-full animate-pulse"
+                                    data-oid="7uub8fc"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-4" data-oid="lgckame">
+                            {travels.map((travel, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-6 rounded-3xl shadow-lg card-hover ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                                    data-oid="331uiiz"
+                                >
+                                    <div
+                                        className="flex items-center space-x-4 mb-4"
+                                        data-oid="7je4b5f"
+                                    >
+                                        <div className="text-3xl" data-oid="z39t7s:">
+                                            {travel.image}
+                                        </div>
+                                        <div className="flex-1" data-oid="yi6etpr">
+                                            <h3
+                                                className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                data-oid="s7t6o82"
+                                            >
+                                                {travel.name}
+                                            </h3>
+                                            <p
+                                                className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                                data-oid="4sjc:bv"
+                                            >
+                                                {travel.date}
+                                            </p>
+                                        </div>
+                                        <span
+                                            className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                                travel.status === 'booked'
+                                                    ? 'bg-green-100 text-green-800'
+                                                    : travel.status === 'planned'
+                                                      ? 'bg-blue-100 text-blue-800'
+                                                      : 'bg-gray-100 text-gray-800'
+                                            }`}
+                                            data-oid="xg7g6re"
+                                        >
+                                            {travel.status === 'booked'
+                                                ? 'Забронировано'
+                                                : travel.status === 'planned'
+                                                  ? 'Запланировано'
+                                                  : 'Идея'}
+                                        </span>
+                                    </div>
+
+                                    <div className="mb-3" data-oid="g1nue._">
+                                        <div
+                                            className="flex justify-between text-sm mb-1"
+                                            data-oid="p5rdt-n"
+                                        >
+                                            <span
+                                                className={
+                                                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                                }
+                                                data-oid="9lfezbk"
+                                            >
+                                                Подготовка
+                                            </span>
+                                            <span
+                                                className={
+                                                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                                                }
+                                                data-oid="ui85vsl"
+                                            >
+                                                {travel.progress}%
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={`w-full h-2 rounded-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}
+                                            data-oid="tqf:-rz"
+                                        >
+                                            <div
+                                                className="h-2 bg-gradient-to-r from-blue-500 to-green-500 rounded-full transition-all duration-1000"
+                                                style={{ width: `${travel.progress}%` }}
+                                                data-oid="55-7.ry"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        className="w-full py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all"
+                                        data-oid="38n8rev"
+                                    >
+                                        Открыть чек-лист
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+
+    const renderTogether = () => (
+        <div
+            className={`min-h-screen pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+            data-oid="j:dz29p"
+        >
+            {/* Sub Navigation */}
+            <div
+                className={`sticky top-0 z-40 ${isDarkMode ? 'bg-gray-900/95' : 'bg-gray-50/95'} backdrop-blur-lg border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
+                data-oid="6vp_gyq"
+            >
+                <div className="flex justify-around py-4 px-6" data-oid="2e:ah27">
+                    {[
+                        { id: 'photos', icon: '📸', label: 'Фото' },
+                        { id: 'recipes', icon: '🍳', label: 'Рецепты' },
+                        { id: 'movies', icon: '🎬', label: 'Фильмы' },
+                        { id: 'goals', icon: '🎯', label: 'Цели' },
+                    ].map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTogetherTab(tab.id)}
+                            className={`flex flex-col items-center py-2 px-3 rounded-2xl transition-all duration-300 ${
+                                activeTogetherTab === tab.id
+                                    ? 'bg-purple-500 text-white shadow-lg scale-105'
+                                    : isDarkMode
+                                      ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                                      : 'text-gray-500 hover:text-gray-700 hover:bg-white'
+                            }`}
+                            data-oid="0i9jxbh"
+                        >
+                            <span className="text-lg mb-1" data-oid="bpzh877">
+                                {tab.icon}
+                            </span>
+                            <span className="text-xs font-medium" data-oid="2rks0xn">
+                                {tab.label}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6" data-oid="tk:-:0j">
+                {activeTogetherTab === 'photos' && (
+                    <div data-oid="uo3m1.0">
+                        <div className="flex justify-between items-center mb-6" data-oid=".l31mln">
+                            <h1
+                                className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                data-oid="-7e6j38"
+                            >
+                                Фотоальбом
+                            </h1>
+                            <button
+                                className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-2xl text-sm"
+                                data-oid="wmgx1ub"
+                            >
+                                AI Story
+                            </button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4" data-oid="otejwr5">
+                            {Array.from({ length: 6 }, (_, i) => (
+                                <div
+                                    key={i}
+                                    className={`${i % 3 === 0 ? 'h-48' : 'h-32'} bg-gradient-to-br from-pink-200 to-purple-300 rounded-3xl flex items-center justify-center shadow-lg card-hover`}
+                                    data-oid="h6fdej1"
+                                >
+                                    <span className="text-2xl" data-oid="j1fkd:d">
+                                        📷
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {activeTogetherTab === 'recipes' && (
+                    <div data-oid="uclizxm">
+                        <h1
+                            className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                            data-oid="_ua5xim"
+                        >
+                            Рецепты
+                        </h1>
+
+                        <div className="flex space-x-3 mb-6 overflow-x-auto" data-oid="872x8yp">
+                            {['Все', 'Итальянская', 'Японская', 'Французская'].map((filter) => (
+                                <button
+                                    key={filter}
+                                    className={`px-4 py-2 rounded-2xl whitespace-nowrap ${
+                                        filter === 'Все'
+                                            ? 'bg-purple-500 text-white'
+                                            : isDarkMode
+                                              ? 'bg-gray-700 text-gray-300'
+                                              : 'bg-white text-gray-600'
+                                    }`}
+                                    data-oid="q2ebryn"
+                                >
+                                    {filter}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="space-y-4" data-oid="jnx.-0_">
+                            {recipes.map((recipe, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-6 rounded-3xl shadow-lg card-hover ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                                    data-oid="1t1gv.y"
+                                >
+                                    <div className="flex items-center space-x-4" data-oid="4c1we_.">
+                                        <div className="text-3xl" data-oid="gbnu:cz">
+                                            {recipe.image}
+                                        </div>
+                                        <div className="flex-1" data-oid="733cfgu">
+                                            <h3
+                                                className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                data-oid="ty8_5w7"
+                                            >
+                                                {recipe.name}
+                                            </h3>
+                                            <p
+                                                className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                                data-oid="7xmn_u0"
+                                            >
+                                                {recipe.cuisine} • {recipe.time}
+                                            </p>
+                                            <div
+                                                className="flex items-center mt-2"
+                                                data-oid="da:p:eg"
+                                            >
+                                                <input
+                                                    type="range"
+                                                    min="1"
+                                                    max="5"
+                                                    defaultValue={recipe.difficulty}
+                                                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                                    data-oid="mi79_fy"
+                                                />
+
+                                                <span
+                                                    className={`ml-2 text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                                    data-oid="5bj9lts"
+                                                >
+                                                    Сложность
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {activeTogetherTab === 'movies' && (
+                    <div data-oid="m102of2">
+                        <h1
+                            className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                            data-oid="gf_bkre"
+                        >
+                            Фильмы и сериалы
+                        </h1>
+
+                        <div className="space-y-6" data-oid="wqb2m2a">
+                            {movies.map((movie, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-6 rounded-3xl shadow-lg transform transition-all duration-300 hover:rotate-0 card-hover ${
+                                        isDarkMode ? 'bg-gray-800' : 'bg-white'
+                                    }`}
+                                    style={{
+                                        transform: `rotate(${(index % 2 === 0 ? 1 : -1) * 2}deg)`,
+                                    }}
+                                    data-oid="198tb1y"
+                                >
+                                    <div className="flex items-center space-x-4" data-oid="0av:hun">
+                                        <div
+                                            className="w-16 h-20 bg-gradient-to-br from-purple-400 to-blue-500 rounded-2xl flex items-center justify-center text-2xl"
+                                            data-oid="9xy5fq0"
+                                        >
+                                            {movie.poster}
+                                        </div>
+                                        <div data-oid="oy_x_::">
+                                            <h3
+                                                className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                data-oid="r1sv.yy"
+                                            >
+                                                {movie.title}
+                                            </h3>
+                                            <p
+                                                className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                                data-oid="a7aj7z2"
+                                            >
+                                                {movie.genre} • {movie.year}
+                                            </p>
+                                            <div className="flex mt-2" data-oid="wl02.0_">
+                                                {Array.from({ length: 5 }, (_, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="text-yellow-400"
+                                                        data-oid="2cv7gri"
+                                                    >
+                                                        ⭐
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {activeTogetherTab === 'goals' && (
+                    <div data-oid="b8.5msc">
+                        <div className="flex justify-between items-center mb-6" data-oid="63x4hvl">
+                            <h1
+                                className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                data-oid="99v.s1m"
+                            >
+                                Наши цели
+                            </h1>
+                            <button
+                                className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center text-white shadow-lg"
+                                data-oid="q5n_aw."
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <div className="space-y-6" data-oid="gwtt4sn">
+                            {goals.map((goal, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-6 rounded-3xl shadow-lg card-hover ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                                    data-oid="661k94k"
+                                >
+                                    <div
+                                        className="flex items-center justify-between mb-4"
+                                        data-oid="pns3ozd"
+                                    >
+                                        <div
+                                            className="flex items-center space-x-3"
+                                            data-oid="6v7w5nx"
+                                        >
+                                            <div
+                                                className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${goal.color} flex items-center justify-center text-xl shadow-lg`}
+                                                data-oid="5zgsnep"
+                                            >
+                                                {goal.icon}
+                                            </div>
+                                            <div data-oid="t3eya2c">
+                                                <h3
+                                                    className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                    data-oid="c9meu1r"
+                                                >
+                                                    {goal.name}
+                                                </h3>
+                                                <p
+                                                    className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                                    data-oid="xjkriol"
+                                                >
+                                                    {goal.current} из {goal.target}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="text-right" data-oid="usb:kl.">
+                                            <div
+                                                className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                data-oid="54obda4"
+                                            >
+                                                {goal.progress}%
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className={`w-full h-3 rounded-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'} overflow-hidden`}
+                                        data-oid="7ia_i7v"
+                                    >
+                                        <div
+                                            className={`h-full bg-gradient-to-r ${goal.color} rounded-full transition-all duration-1000 ease-out`}
+                                            style={{ width: `${goal.progress}%` }}
+                                            data-oid="yn45v1m"
+                                        />
+                                    </div>
+
+                                    {goal.progress >= 100 && (
+                                        <div
+                                            className="mt-3 flex items-center justify-center"
+                                            data-oid=":hcthn:"
+                                        >
+                                            <span
+                                                className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium"
+                                                data-oid=".1v:z:2"
+                                            >
+                                                🎉 Цель достигнута!
+                                            </span>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+
+    const renderSocial = () => (
+        <div
+            className={`min-h-screen pb-24 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+            data-oid="powntq5"
+        >
+            {/* Sub Navigation */}
+            <div
+                className={`sticky top-0 z-40 ${isDarkMode ? 'bg-gray-900/95' : 'bg-gray-50/95'} backdrop-blur-lg border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}
+                data-oid="hfxeese"
+            >
+                <div className="flex justify-around py-4 px-6" data-oid="gkvhfk9">
+                    {[
+                        { id: 'connect', icon: '💑', label: 'Знакомства' },
+                        { id: 'wishlist', icon: '💝', label: 'Желания' },
+                    ].map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveSocialTab(tab.id)}
+                            className={`flex flex-col items-center py-2 px-4 rounded-2xl transition-all duration-300 ${
+                                activeSocialTab === tab.id
+                                    ? 'bg-purple-500 text-white shadow-lg scale-105'
+                                    : isDarkMode
+                                      ? 'text-gray-400 hover:text-gray-200 hover:bg-gray-800'
+                                      : 'text-gray-500 hover:text-gray-700 hover:bg-white'
+                            }`}
+                            data-oid="39pet4o"
+                        >
+                            <span className="text-xl mb-1" data-oid="3m4-:.9">
+                                {tab.icon}
+                            </span>
+                            <span className="text-sm font-medium" data-oid="kqzdpkn">
+                                {tab.label}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6" data-oid="flrf-pv">
+                {activeSocialTab === 'connect' && (
+                    <div data-oid="qd55klc">
+                        <h1
+                            className={`text-2xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                            data-oid="knuw3_u"
+                        >
+                            Знакомства с парами
+                        </h1>
+
+                        <div className="space-y-4" data-oid="t5ut.jk">
+                            {couples.map((couple, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-6 rounded-3xl shadow-lg transform transition-all duration-300 hover:scale-105 card-hover ${
+                                        isDarkMode ? 'bg-gray-800' : 'bg-white'
+                                    }`}
+                                    data-oid="9smq:ni"
+                                >
+                                    <div
+                                        className="flex items-center space-x-4 mb-4"
+                                        data-oid="b0cfiwq"
+                                    >
+                                        <div className="text-3xl" data-oid="-hgq5ma">
+                                            {couple.avatar}
+                                        </div>
+                                        <div data-oid="wsihdog">
+                                            <h3
+                                                className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                data-oid="qqfq3u3"
+                                            >
+                                                {couple.names}
+                                            </h3>
+                                            <p
+                                                className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
+                                                data-oid="-e3hv1:"
+                                            >
+                                                {couple.age} лет • {couple.distance}
+                                            </p>
+                                            <div
+                                                className="flex items-center mt-1"
+                                                data-oid="e0kedrc"
+                                            >
+                                                <span
+                                                    className="text-green-500 text-sm"
+                                                    data-oid="obfr2ao"
+                                                >
+                                                    💚 {couple.compatibility}% совместимость
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-2 mb-4" data-oid="9ye5zmq">
+                                        {couple.interests.map((interest, i) => (
+                                            <span
+                                                key={i}
+                                                className={`px-3 py-1 rounded-full text-xs ${
+                                                    isDarkMode
+                                                        ? 'bg-gray-700 text-gray-300'
+                                                        : 'bg-purple-100 text-purple-600'
+                                                }`}
+                                                data-oid="t4hnz6z"
+                                            >
+                                                {interest}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex space-x-3" data-oid="cohmk0j">
+                                        <button
+                                            className="flex-1 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-2xl font-medium"
+                                            data-oid="0mjew2x"
+                                        >
+                                            💕 Лайк
+                                        </button>
+                                        <button
+                                            className={`flex-1 py-3 rounded-2xl font-medium ${
+                                                isDarkMode
+                                                    ? 'bg-gray-700 text-gray-300'
+                                                    : 'bg-gray-200 text-gray-600'
+                                            }`}
+                                            data-oid="7wydpsx"
+                                        >
+                                            👋 Пропустить
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {activeSocialTab === 'wishlist' && (
+                    <div data-oid="rntf097">
+                        <div className="flex justify-between items-center mb-6" data-oid="vbfs_sx">
+                            <h1
+                                className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                data-oid="qokv0dt"
+                            >
+                                Список желаний
+                            </h1>
+                            <button
+                                className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center text-white shadow-lg"
+                                data-oid="3bqusdn"
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <div className="flex space-x-3 mb-6 overflow-x-auto" data-oid="5c87sjz">
+                            {['Все', 'Путешествия', 'Техника', 'Хобби', 'Развлечения'].map(
+                                (filter) => (
+                                    <button
+                                        key={filter}
+                                        className={`px-4 py-2 rounded-2xl whitespace-nowrap transition-all ${
+                                            filter === 'Все'
+                                                ? 'bg-purple-500 text-white shadow-lg'
+                                                : isDarkMode
+                                                  ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                                  : 'bg-white text-gray-600 hover:bg-gray-50 shadow-md'
+                                        }`}
+                                        data-oid=":9g8inf"
+                                    >
+                                        {filter}
+                                    </button>
+                                ),
+                            )}
+                        </div>
+
+                        <div className="space-y-4" data-oid="smuz_3:">
+                            {wishlistItems.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`p-6 rounded-3xl shadow-lg card-hover ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+                                    data-oid="_m2qm2u"
+                                >
+                                    <div className="flex items-center space-x-4" data-oid="0eceaor">
+                                        <div className="text-3xl" data-oid="5xzmfx7">
+                                            {item.image}
+                                        </div>
+                                        <div className="flex-1" data-oid="fo00i.c">
+                                            <div
+                                                className="flex items-center justify-between mb-2"
+                                                data-oid="hlck0j_"
+                                            >
+                                                <h3
+                                                    className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                    data-oid="9_31lew"
+                                                >
+                                                    {item.name}
+                                                </h3>
+                                                <span
+                                                    className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                                        item.status === 'bought'
+                                                            ? 'bg-green-100 text-green-800'
+                                                            : item.status === 'planned'
+                                                              ? 'bg-blue-100 text-blue-800'
+                                                              : item.status === 'saved'
+                                                                ? 'bg-yellow-100 text-yellow-800'
+                                                                : 'bg-gray-100 text-gray-800'
+                                                    }`}
+                                                    data-oid=".4v67zd"
+                                                >
+                                                    {item.status === 'bought'
+                                                        ? 'Куплено'
+                                                        : item.status === 'planned'
+                                                          ? 'Запланировано'
+                                                          : item.status === 'saved'
+                                                            ? 'Накоплено'
+                                                            : 'Хочу'}
+                                                </span>
+                                            </div>
+                                            <p
+                                                className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'} mb-2`}
+                                                data-oid="pt50xeq"
+                                            >
+                                                {item.category}
+                                            </p>
+                                            <div
+                                                className="flex items-center justify-between"
+                                                data-oid="1rc8z30"
+                                            >
+                                                <span
+                                                    className={`font-bold text-lg ${isDarkMode ? 'text-white' : 'text-gray-800'}`}
+                                                    data-oid="4fo4xh8"
+                                                >
+                                                    {item.price}
+                                                </span>
+                                                {item.status !== 'bought' && (
+                                                    <button
+                                                        className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-2xl text-sm font-medium shadow-lg hover:shadow-xl transition-all"
+                                                        data-oid="o.tb3xq"
+                                                    >
+                                                        {item.status === 'saved'
+                                                            ? 'Купить'
+                                                            : 'Накопить'}
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
